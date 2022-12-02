@@ -1,4 +1,6 @@
 import random
+import matplotlib.pyplot as plt
+
 
 def checkAllTrue(input):
     for i in range(len(input)):
@@ -16,6 +18,7 @@ MAXNUMBERINDICE=6
 NUMBEROFDIFFERENTSUMS=11
 
 results=[]
+averages=[]
 
 for i in range(NUMBEROFSIMULATION):
     quit=False
@@ -30,5 +33,18 @@ for i in range(NUMBEROFSIMULATION):
         if(checkAllTrue(temp)):
             quit=True
     results.append(counter)
+    averages.append(sum(results)/len(results))
 sumOfResults=sumFunc(results)
-print("Expected number of dice rolls: {0}\n".format(sumOfResults/len(results)))
+print("Rolls needed: ")
+for i in range(len(results)):
+    print("{0}, ".format(results[i]),end="")
+print("\nExpected number of dice rolls: {0}\n".format(sumOfResults/len(results)))
+x=[0]*NUMBEROFSIMULATION
+for i in range(len(x)):
+    x[i]=i
+plt.plot(x,averages)
+plt.xlabel("number of simulation")
+plt.ylabel("average")
+plt.title("change of average over the number of simulations")
+plt.savefig('plot2.png', dpi=300, bbox_inches='tight')
+plt.show()

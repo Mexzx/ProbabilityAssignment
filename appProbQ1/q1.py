@@ -20,13 +20,13 @@ averages=[]
 
 for i in range(NUMBEROFSIMULATION):
     quit=False
-    temp=[False]*MAXNUMBERINDICE
+    outComes=[False]*MAXNUMBERINDICE
     counter=0
     while(not quit):
         counter+=1
         randomNumber=random.randint(1,MAXNUMBERINDICE)
-        temp[randomNumber-1]=True
-        if(checkAllTrue(temp)):
+        outComes[randomNumber-1]=True
+        if(checkAllTrue(outComes)):
             quit=True
     
     results.append(counter)
@@ -36,9 +36,10 @@ for i in range(NUMBEROFSIMULATION):
     sum=0
     for i in range(len(results)):
         sum+=results[i]
-
-
-print("average {0}".format(sum/len(results)))
+print("Number of rolls needed:")
+for i in range(len(results)):
+    print("{0}, ".format(results[i]),end="")
+print("\nexpected number: {0}".format(sum/len(results)))
 x=[0]*NUMBEROFSIMULATION
 for i in range(len(x)):
     x[i]=i
